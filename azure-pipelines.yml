@@ -51,6 +51,7 @@ stages:
             backendAzureRmResourceGroupName: 'pipeline_storage'
             backendAzureRmStorageAccountName: 'ravistgacc'
             backendAzureRmContainerName: 'ravicon'
+            backendAzureRmKey: 'ravi.tfstate'
         - task: TerraformTask@5
           inputs:
             provider: 'azurerm'
