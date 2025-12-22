@@ -1,0 +1,29 @@
+trigger: none
+pool: dec_pipe
+stages:
+  - stage: 
+    jobs:
+      - job: 
+        displayName: terraform_install
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/module'
+            backendServiceArm: 'decpipeline'
+            backendAzureRmOverrideSubscriptionID: 'stgaccountravi'
+            backendAzureRmResourceGroupName: 'pipeline_storage'
+            backendAzureRmStorageAccountName: 'ravistgacc'
+            backendAzureRmContainerName: 'ravicon'
+            backendAzureRmKey: 'ravi.tfstate'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/module'
+            environmentServiceNameAzureRM: 'decpipeline'
+        
