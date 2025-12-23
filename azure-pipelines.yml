@@ -16,9 +16,9 @@ stages:
             workingDirectory: '$(System.DefaultWorkingDirectory)/module'
             backendServiceArm: 'decpipeline'
             backendAzureRmOverrideSubscriptionID: 'stgaccountravi'
-            backendAzureRmResourceGroupName: 'pipeline_storage'
-            backendAzureRmStorageAccountName: 'ravistgacc'
-            backendAzureRmContainerName: 'ravicon'
+            backendAzureRmResourceGroupName: 'ravinder_storage'
+            backendAzureRmStorageAccountName: 'ravinderstg'
+            backendAzureRmContainerName: 'ravindercon'
             backendAzureRmKey: 'ravi.tfstate'
         - task: TerraformTask@5
           inputs:
@@ -49,9 +49,9 @@ stages:
             backendAzureRmUseEntraIdForAuthentication: false
             backendServiceArm: 'decpipeline'
             backendAzureRmOverrideSubscriptionID: 'stgaccountravi'
-            backendAzureRmResourceGroupName: 'pipeline_storage'
-            backendAzureRmStorageAccountName: 'ravistgacc'
-            backendAzureRmContainerName: 'ravicon'
+            backendAzureRmResourceGroupName: 'ravinder_storage'
+            backendAzureRmStorageAccountName: 'ravinderstg'
+            backendAzureRmContainerName: 'ravindercon'
             backendAzureRmKey: 'ravi.tfstate'
         - task: TerraformTask@5
           inputs:
