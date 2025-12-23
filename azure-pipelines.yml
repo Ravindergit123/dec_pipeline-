@@ -10,6 +10,7 @@ stages:
           inputs:
             terraformVersion: 'latest'
         - task: TerraformTask@5
+          displayName: init
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -39,9 +40,9 @@ stages:
   - stage: 
     jobs:
       - job:
-        displayName: apply
         steps:
         - task: TerraformTask@5
+          displayName: init2
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -54,10 +55,16 @@ stages:
             backendAzureRmContainerName: 'ravindercon'
             backendAzureRmKey: 'ravi.tfstate'
         - task: TerraformTask@5
+          displayName: apply
           inputs:
             provider: 'azurerm'
             command: 'apply'
             workingDirectory: '$(System.DefaultWorkingDirectory)/module'
             environmentServiceNameAzureRM: 'decpipeline'
-
+        - task: TerraformTask@5
+          displayName: destroy
+          inputs:
+            provider: 'azurerm'
+            command: 'destroy'
+            environmentServiceNameAzureRM: 'decpipeline'
         
